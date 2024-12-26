@@ -6,6 +6,7 @@ import { useStateContext } from "../context/ContextProvider.jsx";
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { setNotification } = useStateContext();
 
   useEffect(() => {
     getUsers();
@@ -16,7 +17,7 @@ export default function Users() {
       return;
     }
     axiosClient.delete(`/users/${user.id}`).then(() => {
-      // setNotification("User was successfully deleted");
+      setNotification("User was successfully deleted");
       getUsers();
     });
   };
@@ -62,7 +63,7 @@ export default function Users() {
           {loading && (
             <tbody>
               <tr>
-                <td colSpan="5" className="text-center">
+                <td colSpan="5" class="text-center">
                   Loading...
                 </td>
               </tr>

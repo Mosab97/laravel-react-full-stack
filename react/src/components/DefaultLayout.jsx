@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../context/ContextProvider";
-import axiosClient from "../axios-client";
+import axiosClient from "../axios-client.js";
+import { useEffect } from "react";
 
 export default function DefaultLayout() {
-  const { user, token, setUser, setToken } = useStateContext();
+  const { user, token, setUser, setToken, notification } = useStateContext();
 
   if (!token) {
     return <Navigate to="/login" />;
@@ -34,9 +34,10 @@ export default function DefaultLayout() {
       <div className="content">
         <header>
           <div>Header</div>
+
           <div>
-            {user.name}
-            <a href="#" onClick={onLogout} className="btn-logout">
+            {user.name} &nbsp; &nbsp;
+            <a onClick={onLogout} className="btn-logout" href="#">
               Logout
             </a>
           </div>
@@ -44,6 +45,7 @@ export default function DefaultLayout() {
         <main>
           <Outlet />
         </main>
+        {notification && <div className="notification">{notification}</div>}
       </div>
     </div>
   );
