@@ -16,7 +16,7 @@ export default function Users() {
       return;
     }
     axiosClient.delete(`/users/${user.id}`).then(() => {
-      setNotification("User was successfully deleted");
+      // setNotification("User was successfully deleted");
       getUsers();
     });
   };
