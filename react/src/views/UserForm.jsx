@@ -15,6 +15,7 @@ export default function UserForm() {
   });
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { setNotification } = useStateContext();
 
   if (id) {
     useEffect(() => {
